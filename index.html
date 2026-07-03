@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My College | Online OD Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <span class="material-icons">school</span>
+            PSNA College of Engineering and Technology | Online OD Application
+        </div>
+        <div class="header-right">
+            <span class="material-icons notification">notifications</span>
+            <div class="profile">
+                <img src="https://via.placeholder.com/40" alt="User Profile">
+                <span class="material-icons">arrow_drop_down</span>
+            </div>
+        </div>
+    </header>
+   
+    <main>
+        <section class="form-container">
+            <h2>New OD Application</h2>
+            
+            <form id="odForm">
+                <div class="section-title">
+                    <span class="material-icons">groups</span> Applicant Details
+                </div>
+                <div id="membersContainer">
+                    <div class="member-row" style="display: flex; gap: 10px; align-items: center; margin-bottom: 10px; flex-wrap: wrap;">
+                        <input type="text" class="member-name" placeholder="Full Name" style="flex: 2; min-width: 150px;" required>
+                        
+                        <input type="text" 
+                               class="member-roll" 
+                               placeholder="Roll No (e.g., 23EC194)" 
+                               pattern="\d{2}[A-Za-z]{2}\d{3}" 
+                               title="Format must be: 2 Digits Year + 2 Letters Dept + 3 Digits Roll" 
+                               style="flex: 1.5; min-width: 130px;"
+                               required>
+
+                        <select class="member-year" style="flex: 1; min-width: 80px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;" required>
+                            <option value="" disabled selected>Year</option>
+                            <option value="I">I</option>
+                            <option value="II">II</option>
+                            <option value="III">III</option>
+                            <option value="IV">IV</option>
+                        </select>
+
+                        <select class="member-section" style="flex: 1; min-width: 80px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;" required>
+                            <option value="" disabled selected>Sec</option>
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+
+                        <select class="member-dept" style="flex: 1.5; min-width: 100px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;" required>
+                            <option value="" disabled selected>Dept</option>
+                            <option value="Civil">Civil</option>
+                            <option value="Mechanical">Mechanical</option>
+                            <option value="EEE">EEE</option>
+                            <option value="ECE">ECE</option>
+                            <option value="CSE">CSE</option>
+                            <option value="IT">IT</option>
+                            <option value="BME">BME</option>
+                            <option value="AIDS">AIDS</option>
+                            <option value="CSBS">CSBS</option>
+                            <option value="VLSI">VLSI</option>
+                            <option value="MCA">MCA</option>
+                            <option value="MBA">MBA</option>
+                        </select>
+
+                        <input type="number" class="member-attendance" step="0.01" min="0" max="100" placeholder="Attd %" style="flex: 1.2; min-width: 90px; padding: 8px; border-radius: 4px; border: 1px solid #ccc;" required>
+
+                        <button type="button" class="btn-remove" onclick="removeMember(this)" style="background: none; border: none; color: #e74c3c; cursor: pointer; display: none;">
+                            <span class="material-icons">delete</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <button type="button" id="btnAddMember" class="secondary-button">
+                    <span class="material-icons">person_add</span> Add Another Member
+                </button>
+
+                <div class="section-title" style="margin-top: 20px;">
+                    <span class="material-icons">grid_view</span> Reason Selection
+                </div>
+                <div class="reason-grid">
+                    <label class="reason-item active-reason" for="radUniv"><input type="radio" id="radUniv" name="odReason" value="Univ Exam" checked><span>Univ Exam</span></label>
+                    <label class="reason-item" for="radDept"><input type="radio" id="radDept" name="odReason" value="Dept Function"><span>Dept Function</span></label>
+                    <label class="reason-item" for="radSymp"><input type="radio" id="radSymp" name="odReason" value="Symposium"><span>Symposium</span></label>
+                    <label class="reason-item" for="radWork"><input type="radio" id="radWork" name="odReason" value="Conf./Seminar/Workshop"><span>Workshop</span></label>
+                    <label class="reason-item" for="radSports"><input type="radio" id="radSports" name="odReason" value="Sports"><span>Sports</span></label>
+                    <label class="reason-item" for="radNss"><input type="radio" id="radNss" name="odReason" value="NSS"><span>NSS</span></label>
+                    <label class="reason-item" for="radBlood"><input type="radio" id="radBlood" name="odReason" value="Blood Donation"><span>Blood Don.</span></label>
+                    <label class="reason-item" for="radYrc"><input type="radio" id="radYrc" name="odReason" value="YRC"><span>YRC</span></label>
+                    <label class="reason-item" for="radArts"><input type="radio" id="radArts" name="odReason" value="Fine Arts"><span>Fine Arts</span></label>
+                    <label class="reason-item" for="radRot"><input type="radio" id="radRot" name="odReason" value="Rotract Club"><span>Rotract</span></label>
+                    <label class="reason-item" for="radProf"><input type="radio" id="radProf" name="odReason" value="Professional Society"><span>Prof. Soc.</span></label>
+                    <label class="reason-item" for="radPlace"><input type="radio" id="radPlace" name="odReason" value="Placement"><span>Placement</span></label>
+                    
+                    <label class="reason-item" for="radOther"><input type="radio" id="radOther" name="odReason" value="Others"><span>Others</span></label>
+                </div>
+
+                <div id="otherReasonContainer" style="display: none; margin-top: 15px; width: 100%;">
+                    <input type="text" id="txtOtherReason" placeholder="Please specify the reason for your OD" style="width: 100%; padding: 10px; border-radius: 4px; border: 1px solid #ccc;">
+                </div>
+
+                <div class="details-layout">
+                    <div class="date-picker-block">
+                        <div class="date-input">
+                            <label>From Date</label>
+                            <input type="date" id="fromDate" required>
+                        </div>
+                        <div class="date-input">
+                            <label>To Date</label>
+                            <input type="date" id="toDate" required>
+                        </div>
+                    </div>
+                    <div class="coordinator-block">
+                        <input type="text" id="coordName" placeholder="Coordinator Name" required>
+                        <input type="text" id="coordDept" placeholder="Designation/Dept" required>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    
+                    <button type="submit" class="submit-button">Submit Request</button>
+                </div>
+            </form>
+        </section>
+
+        <aside class="status-aside">
+            <div class="status-container">
+                <h3>Request Status Tracker</h3>
+                <div class="status-graphs">
+                    <div class="chart green" style="--percent: 90;"><span>90%</span><div class="border"></div></div>
+                    <div class="chart yellow" style="--percent: 30;"><span>30%</span><div class="border"></div></div>
+                </div>
+                <div class="status-cards" id="trackerContainer">
+                    <p style="color: #888; text-align: center; font-size: 0.9rem;">Loading your requests...</p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <div id="previewModal" class="modal" style="display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:100; overflow-y:auto; padding: 20px 0;">
+        <div class="modal-content" style="background: white; max-width: 800px; margin: 0 auto; padding: 30px; border-radius: 8px; position: relative;">
+            
+            <div style="position: absolute; top: 120px; right: 40px; z-index: 10; pointer-events: none;">
+                <div id="approvedSeal" style="display: none; transform: rotate(-15deg); border: 4px double #2ecc71; color: #2ecc71; font-family: 'Arial Black', sans-serif; font-size: 1.4rem; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-transform: uppercase; letter-spacing: 2px; background: rgba(255, 255, 255, 0.9); box-shadow: 0 0 10px rgba(46,204,113,0.2); text-align: center;">
+                    ✓ APPROVED <br>
+                    <span style="font-size: 0.7rem; font-family: 'Segoe UI', sans-serif; display: block; letter-spacing: 0;">Verified Portal Copy</span>
+                </div>
+                <div id="rejectedSeal" style="display: none; transform: rotate(-15deg); border: 4px double #e74c3c; color: #e74c3c; font-family: 'Arial Black', sans-serif; font-size: 1.4rem; font-weight: bold; padding: 10px 20px; border-radius: 8px; text-transform: uppercase; letter-spacing: 2px; background: rgba(255, 255, 255, 0.9); box-shadow: 0 0 10px rgba(231,76,60,0.2); text-align: center;">
+                    ✕ REJECTED <br>
+                    <span style="font-size: 0.7rem; font-family: 'Segoe UI', sans-serif; display: block; letter-spacing: 0;">Attendance Shortage</span>
+                </div>
+            </div>
+
+            <div class="modal-actions no-print" style="margin-bottom: 20px; display: flex; gap: 10px;">
+                <button onclick="window.print()" class="print-btn" style="padding: 10px 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;"><span class="material-icons">print</span> Print/Save PDF</button>
+                <button id="btnCloseModal" class="close-btn" style="padding: 10px 20px; cursor: pointer; display: flex; align-items: center; gap: 5px;"><span class="material-icons">close</span> Close</button>
+            </div>
+            
+            <div class="formal-sheet">
+                <div class="sheet-header" style="text-align: center;">
+                    <h2>PSNA COLLEGE OF ENGINEERING & TECHNOLOGY</h2>
+                    <p>Official On-Duty (OD) Requisition Form — Student Copy</p>
+                    <hr class="formal-divider" style="border: 1px solid #000; margin: 15px 0;">
+                </div>
+                
+                <table class="formal-meta-table" style="width: 100%; margin-bottom: 20px; text-align: left;">
+                    <tr>
+                        <td><strong>OD Category / Reason:</strong> <span id="lblReason">--</span></td>
+                        <td><strong>Date of Application:</strong> <span id="lblCurrentDate">--</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Duration:</strong> From <span id="lblFromDate">--</span> To <span id="lblToDate">--</span></td>
+                        <td><strong>Event Coordinator:</strong> <span id="lblCoord">--</span> (<span id="lblCoordDept">--</span>)</td>
+                    </tr>
+                </table>
+
+                <h3>Enlisted Beneficiary Cohort</h3>
+                <table class="formal-list-table" style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #000; text-align: left;">
+                            <th style="width: 8%; padding: 8px;">S.No</th>
+                            <th style="width: 32%; padding: 8px;">Student Full Name</th>
+                            <th style="width: 20%; padding: 8px;">Roll Number</th>
+                            <th style="width: 15%; padding: 8px;">Year & Sec</th>
+                            <th style="width: 15%; padding: 8px;">Department</th>
+                            <th style="width: 10%; padding: 8px;">Attd %</th>
+                        </tr>
+                    </thead>
+                    <tbody id="lblMembersTable">
+                        </tbody>
+                </table>
+
+                <div id="lblAttendanceNote" style="display: none; border-left: 5px solid #e74c3c; background-color: #fdf2f2; color: #b91c1c; padding: 12px; margin: 15px 0; font-weight: bold; font-family: 'Segoe UI', sans-serif; font-size: 0.9rem; border-radius: 4px;">
+                    </div>
+
+
+                <div class="formal-declaration" style="margin-top: 15px;">
+                    <p><strong>Declaration:</strong> We hereby declare that the information specified above is accurate to the best of our knowledge. We take absolute responsibility for maintaining academic deliverables omitted during this off-site delegation interval.</p>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-top: 80px;">
+                    
+                    <div style="position: relative; text-align: center; width: 220px;">
+                        <div class="round-seal-wrapper" style="margin-bottom: 10px; display: flex; justify-content: center;">
+                            <div class="panel-seal" style="width: 90px; height: 90px; border-radius: 50%; border: 3px dashed #7f8c8d; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7f8c8d; font-weight: bold; font-size: 0.7rem; text-align: center; font-family: sans-serif;">
+                                <span class="material-icons seal-icon" style="font-size: 1.5rem;">hourglass_empty</span>
+                                <div class="seal-text">PENDING</div>
+                            </div>
+                        </div>
+                        <div style="border-top: 1px dashed #000; padding-top: 8px; font-weight: bold; font-size: 0.9rem;">
+                            Event Coordinator
+                        </div>
+                    </div>
+
+                    <div style="position: relative; text-align: center; width: 220px;">
+                        <div class="round-seal-wrapper" style="margin-bottom: 10px; display: flex; justify-content: center;">
+                            <div class="panel-seal" style="width: 90px; height: 90px; border-radius: 50%; border: 3px dashed #7f8c8d; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #7f8c8d; font-weight: bold; font-size: 0.7rem; text-align: center; font-family: sans-serif;">
+                                <span class="material-icons seal-icon" style="font-size: 1.5rem;">hourglass_empty</span>
+                                <div class="seal-text">PENDING</div>
+                            </div>
+                        </div>
+                        <div style="border-top: 1px dashed #000; padding-top: 8px; font-weight: bold; font-size: 0.9rem;">
+                            Head of Department
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

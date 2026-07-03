@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty Dashboard | OD Approver Panel</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        /* Specific tweaks just for the admin table layout layout */
+        .admin-panel { max-width: 1200px; width: 100%; margin: 40px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.15); }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 0.95rem; }
+        .admin-table th, .admin-table td { padding: 12px 15px; border-bottom: 1px solid #e1e2e6; text-align: left; }
+        .admin-table th { background: #2a5298; color: white; font-weight: 600; }
+        
+        /* Status Badges */
+        .badge { padding: 5px 10px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; display: inline-block; }
+        .badge.pending { background: #fef9e7; color: #f1c40f; border: 1px solid #f1c40f; }
+        .badge.approved { background: #eafaf1; color: #2ecc71; border: 1px solid #2ecc71; }
+        .badge.rejected { background: #fceae8; color: #e74c3c; border: 1px solid #e74c3c; }
+        
+        /* Interactive Action Buttons */
+        .action-group { display: flex; gap: 8px; align-items: center; }
+        .action-btn { color: white; border: none; padding: 6px 12px; border-radius: 4px; font-weight: bold; cursor: pointer; display: inline-flex; align-items: center; gap: 4px; font-size: 0.85rem; transition: background 0.2s ease; }
+        
+        .action-btn.approve { background: #2ecc71; }
+        .action-btn.approve:hover { background: #27ae60; }
+        
+        .action-btn.reject { background: #e74c3c; }
+        .action-btn.reject:hover { background: #c0392b; }
+        
+        .members-list-cell { font-size: 0.85rem; color: #555; max-height: 80px; overflow-y: auto; display: block; }
+        .rejection-text { font-size: 0.8rem; color: #e74c3c; font-style: italic; margin-top: 4px; display: block; }
+    </style>
+</head>
+<body style="background: linear-gradient(135deg, #2a5298, #1e3c72);">
+    
+    <header>
+        <div class="logo">
+            <span class="material-icons">admin_panel_settings</span>
+            Faculty Portal | OD Authorization Panel
+        </div>
+        <div class="header-right">
+            <a href="index.html" style="color: white; text-decoration: none; display: flex; align-items: center; gap: 5px; font-weight: bold;">
+                <span class="material-icons">school</span> Student View
+            </a>
+        </div>
+    </header>
+
+    <main style="display: block; padding: 0 20px;">
+        <div class="admin-panel">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h2 style="border: none; margin: 0; padding: 0;">Incoming OD Requisitions Portal</h2>
+                <div style="font-size: 0.85rem; color: #666;">Live Cloud Stream Sync Active</div>
+            </div>
+            
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th style="width: 15%;">Dates (From - To)</th>
+                        <th style="width: 15%;">Reason Category</th>
+                        <th style="width: 35%;">Enlisted Student Cohort</th>
+                        <th style="width: 15%;">Current Status</th>
+                        <th style="width: 20%;">Execution Operations</th>
+                    </tr>
+                </thead>
+                <tbody id="adminRequestsBody">
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: #888; padding: 30px;">Connecting live pipeline stream to Firestore...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script type="module" src="approver.js"></script>
+</body>
+</html>
